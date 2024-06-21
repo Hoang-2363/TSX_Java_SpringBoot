@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cửa hàng</title>
+<link href="/bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 mx-auto rounded border p-4 m-4">
+				<h2 class="text-center mb-5">Cập nhật sản phẩm</h2>
+
+				<form method="post" enctype="multipart/form-data"
+					th:object="${productDto}">
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Mã sản phẩm</label>
+						<div class="col-sm-8">
+							<input readonly class="form-control-plaintext"
+								th:value="${product.id}">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Tên sản phẩm</label>
+						<div class="col-sm-8">
+							<input class="form-control" th:field="${productDto.ten_hang}">
+							<p th:if="${#fields.hasErrors('ten_hang')}"
+								th:errorclass="text-danger" th:errors="${productDto.ten_hang}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Giá nhập</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="number" step="0.01" min="0"
+								th:field="${productDto.gia_nhap}">
+							<p th:if="${#fields.hasErrors('gia_nhap')}"
+								th:errorclass="text-danger" th:errors="${productDto.gia_nhap}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Giá bán</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="number" step="0.01" min="0"
+								th:field="${productDto.gia_ban}">
+							<p th:if="${#fields.hasErrors('gia_ban')}"
+								th:errorclass="text-danger" th:errors="${productDto.gia_ban}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Đơn vị tính</label>
+						<div class="col-sm-8">
+							<input class="form-control" th:field="${productDto.dvt}">
+							<p th:if="${#fields.hasErrors('dvt')}"
+								th:errorclass="text-danger" th:errors="${productDto.dvt}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Số lượng tồn</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="number"
+								th:field="${productDto.slt}">
+							<p th:if="${#fields.hasErrors('slt')}"
+								th:errorclass="text-danger" th:errors="${productDto.slt}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Loại hàng hóa</label>
+						<div class="col-sm-8">
+							<select class="form-select"
+								th:field="${productDto.loai_hang_hoa}">
+								<option value="Loại hàng hóa">Loại hàng hóa</option>
+								<option value="Rau - Củ - Trái cây">Rau - Củ - Trái cây</option>
+								<option value="Sữa">Sữa</option>
+								<option value="Bánh kẹo">Bánh kẹo</option>
+								<option value="Đồ uống giải khát">Đồ uống giải khát</option>
+							</select>
+
+							<p th:if="${#fields.hasErrors('loai_hang_hoa')}"
+								th:errorclass="text-danger"
+								th:errors="${productDto.loai_hang_hoa}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Ghi chú</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" th:field="${productDto.ghi_chu}"></textarea>
+							<p th:if="${#fields.hasErrors('ghi_chu')}"
+								th:errorclass="text-danger" th:errors="${productDto.ghi_chu}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="offset-sm-4 col-sm-8">
+							<img alt="..." width="150"
+								th:src="@{'/images/' + ${product.anh}}">
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Ảnh</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="file"
+								th:field="${productDto.anh}">
+							<p th:if="${#fields.hasErrors('anh')}"
+								th:errorclass="text-danger" th:errors="${productDto.anh}"></p>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label class="col-sm-4 col-form-label">Ngày nhập</label>
+						<div class="col-sm-8">
+							<input readonly class="form-control-plaintext"
+								th:value="${product.ngay_nhap}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="offset-sm-4 col-sm-4 d-grid">
+							<button type="submit" class="btn btn-primary">Cập nhật</button>
+						</div>
+						<div class="col-sm-4 d-grid">
+							<a class="btn btn-outline-primary" href="/sanpham" role="button">Thoát</a>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<script src="/bootstrap-5.3.3/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+</body>
+</html>

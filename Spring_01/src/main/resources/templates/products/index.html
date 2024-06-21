@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cửa hàng</title>
+<link href="/bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center my-4">Danh sách sản phẩm</h1>
+
+		<a class="btn btn-primary" href="/sanpham/them">Thêm sản phẩm</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Mã hàng hóa</th>
+					<th>Ảnh</th>
+					<th>Tên hàng hóa</th>
+					<th>Giá nhập</th>
+					<th>Giá bán</th>
+					<th>Đơn vị tính</th>
+					<th>Số lượng tồn</th>
+					<th>Loại hàng hóa</th>
+					<th>Ghi chú</th>
+					<th>Ngày nhập</th>
+					<th>Thao tác</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.id}"></td>
+					<td><img alt="..." th:src="@{'/images/' + ${product.anh}}"
+						width="100"></td>
+					<td th:text="${product.ten_hang}"></td>
+					<td th:text="@{${product.gia_nhap} + 'đ'}"></td>
+					<td th:text="@{${product.gia_ban} + 'đ'}"></td>
+					<td th:text="${product.dvt}"></td>
+					<td th:text="${product.slt}"></td>
+					<td th:text="${product.loai_hang_hoa}"></td>
+					<td th:text="${product.ghi_chu}"></td>
+					<td th:text="${product.ngay_nhap.toString().substring(0, 10)}"></td>
+					<td style="white-space: nowrap"><a
+						class="btn btn-primary btn-sm"
+						th:href="@{/sanpham/sua(id=${product.id})}">Sửa</a> <a
+						class="btn btn-danger btn-sm"
+						th:href="@{/sanpham/xoa(id=${product.id})}"
+						onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">Xóa</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+	<script src="/bootstrap-5.3.3/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+</body>
+</html>

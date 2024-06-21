@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+H:\Hoang\04_Java_BTL\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+966482178.index
+2714847014.index
+1328952303.index
+3116599263.index
+1615251025.index
+1572625845.index
